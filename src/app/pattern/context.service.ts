@@ -1,15 +1,13 @@
-import { Injectable, Injector } from '@angular/core';
+import { Injectable, Inject } from '@angular/core';
 import * as strategies from './strategies/index';
 import { IConfiguration } from './iConfiguration';
 
 @Injectable()
 export class ContextService {
-    private _strategies: Array<strategies.IStrategy> = [];
 
     public constructor(
-        private injector: Injector
+        @Inject(strategies.StrategyToken) private _strategies: Array<strategies.IStrategy>
     ) {
-        this._strategies = injector.get(strategies.StrategyToken);
     }
 
     public applyStrategy(value: IConfiguration): void {
