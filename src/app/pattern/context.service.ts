@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Injector } from '@angular/core';
 import * as strategies from './strategies/index';
 import { IConfiguration } from './iConfiguration';
 
@@ -7,15 +7,9 @@ export class ContextService {
     private _strategies: Array<strategies.IStrategy> = [];
 
     public constructor(
-        private _dryStrategy: strategies.DryStrategy,
-        private _subHumidStrategy: strategies.SubHumidStrategy,
-        private _humidStrategy: strategies.HumidStrategy
+        private injector: Injector
     ) {
-        this._strategies = [
-            this._dryStrategy,
-            this._subHumidStrategy,
-            this._humidStrategy
-        ];
+        this._strategies = injector.get(strategies.StrategyToken);
     }
 
     public applyStrategy(value: IConfiguration): void {
