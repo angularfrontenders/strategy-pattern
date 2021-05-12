@@ -9,9 +9,9 @@ import * as strategies from './strategies/index';
     imports: [],
     providers: [
         ContextService,
-        strategies.DryStrategy,
-        strategies.SubHumidStrategy,
-        strategies.HumidStrategy
+        { provide: strategies.StrategyToken, useClass: strategies.DryStrategy, multi: true },
+        { provide: strategies.StrategyToken, useClass: strategies.SubHumidStrategy, multi: true },
+        { provide: strategies.StrategyToken, useClass: strategies.HumidStrategy, multi: true }
     ]
 })
 export class PatternModule { }
