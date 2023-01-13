@@ -1,3 +1,5 @@
+Important: This repository was moved to an Nx monorepo at https://github.com/angularfrontenders/monorepo
+
 # StrategyPattern
 
 Project upgraded to Angular 11
